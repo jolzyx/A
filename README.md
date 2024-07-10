@@ -19,7 +19,8 @@ Ensure you have the following installed:
 - pyotp
 - pyqrcode
 - cryptography
+- pypng
 
 You can install the required packages using pip:
 ```sh
-pip install pyqt5 pyotp pyqrcode cryptography
+pip install pyqt5 pyotp pyqrcode cryptography pypng
