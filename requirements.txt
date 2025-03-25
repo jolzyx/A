@@ -1,0 +1,7 @@
+PyQt5>=5.15.0
+PyQt5-sip<13,>=12.15
+PyQt5-Qt5<5.16.0,>=5.15.2
+pyotp>=2.8.0
+pyperclip>=1.8.2
+PyQRCode>=1.2.1
+pypng>=0.20220715.0

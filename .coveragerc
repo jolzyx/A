@@ -1,0 +1,23 @@
+[run]
+source = src
+omit = 
+    */test_*.py
+    */__init__.py
+    */setup.py
+
+[report]
+exclude_lines =
+    pragma: no cover
+    def __repr__
+    if __name__ == .__main__.:
+    raise NotImplementedError
+    pass
+    raise ImportError
+    except ImportError
+    if 0:
+    if __debug__:
+    if TYPE_CHECKING:
+    @abc.abstractmethod
+
+[html]
+directory = htmlcov
