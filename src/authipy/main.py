@@ -11,7 +11,7 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtGui import QPixmap, QFont, QCursor, QIcon
 from PyQt5.QtCore import QTimer, Qt
-from .version import __version__
+from authipy.version import __version__
 
 CONFIG_DIR = os.path.join(os.path.expanduser('~'), '.config', 'authipy')
 if not os.path.exists(CONFIG_DIR):

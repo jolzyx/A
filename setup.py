@@ -1,9 +1,12 @@
 from setuptools import setup, find_packages
-from src.authipy.version import __version__
+
+meta = {}
+with open("./src/authipy/version.py", encoding="utf-8") as f:
+    exec(f.read(), meta)
 
 setup(
     name="Authipy",
-    version=__version__,
+    version=meta["__version__"],
     packages=find_packages(where="src"),
     package_dir={"": "src"},
     install_requires=[
