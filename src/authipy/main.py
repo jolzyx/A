@@ -11,6 +11,7 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtGui import QPixmap, QFont, QCursor, QIcon
 from PyQt5.QtCore import QTimer, Qt
+from .version import __version__
 
 CONFIG_DIR = os.path.join(os.path.expanduser('~'), '.config', 'authipy')
 if not os.path.exists(CONFIG_DIR):
@@ -565,7 +566,7 @@ class AuthipyApp(QMainWindow):
         QMessageBox.information(self, 'Help', 'Help section is under construction.')
 
     def openAbout(self):
-        QMessageBox.information(self, 'About', 'Authipy version 0.0.1\nDeveloped by TanmoyTheBoT.')
+        QMessageBox.information(self, 'About', f'Authipy version {__version__}\nDeveloped by TanmoyTheBoT.')
 
 def main():
     app = QApplication(sys.argv)
