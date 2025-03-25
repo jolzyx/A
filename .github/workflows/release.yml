@@ -1,4 +1,4 @@
-name: Release
+name: Build and Release
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install build twine
+          pip install build twine Pillow
       
       - name: Build package
         run: python -m build
@@ -40,3 +40,35 @@ jobs:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
         run: twine upload dist/*
+
+
+  build-executable:
+    runs-on: windows-latest
+    needs: release  
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller
+
+      - name: Build Standalone Executable with PyInstaller
+        run: |
+          # Run PyInstaller to create the standalone .exe (adjust script name accordingly)
+          
+          pyinstaller --noconsole --onefile --icon=docs/images/test.jpg --name Authipy src/authipy/main.py
+
+      - name: Create Release for Executable
+        uses: softprops/action-gh-release@v1
+        with:
+          files: dist/*
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
