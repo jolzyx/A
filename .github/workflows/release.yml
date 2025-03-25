@@ -65,7 +65,7 @@ jobs:
         run: |
           # Run PyInstaller to create the standalone .exe (adjust script name accordingly)
           
-          pyinstaller --noconsole --onefile --icon=docs/images/test.jpg --name Authipy src/authipy/main.py
+          pyinstaller --noconsole --onefile --icon=docs/images/test.ico --name Authipy src/authipy/main.py
 
       - name: Create Release for Executable
         uses: softprops/action-gh-release@v1
