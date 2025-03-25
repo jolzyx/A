@@ -5,4 +5,3 @@ pyotp>=2.8.0
 pyperclip>=1.8.2
 PyQRCode>=1.2.1
 pypng>=0.20220715.0
-sip
