@@ -565,7 +565,7 @@ class AuthipyApp(QMainWindow):
         QMessageBox.information(self, 'Help', 'Help section is under construction.')
 
     def openAbout(self):
-        QMessageBox.information(self, 'About', 'Authipy version 1.0.0\nDeveloped by TanmoyTheBoT.')
+        QMessageBox.information(self, 'About', 'Authipy version 0.0.1\nDeveloped by TanmoyTheBoT.')
 
 def main():
     app = QApplication(sys.argv)

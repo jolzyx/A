@@ -65,7 +65,7 @@ authipy
 
 Or if installed from source:
 ```bash
-python -m authipy
+python -m authipy.main
 ```
 
 ### Adding a New Account
