@@ -49,8 +49,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
-      - name: Publish to PyPI
+      - name: Publish to Test PyPI
         env:
           TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-        run: twine upload --repository-url https://test.pypi.org/legacy/ package-dist/*
+          TWINE_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}
+        run: |
+          python -m twine check package-dist/*
+          python -m twine upload --verbose --repository-url https://test.pypi.org/legacy/ package-dist/*
