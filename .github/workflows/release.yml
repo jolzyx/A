@@ -7,7 +7,7 @@ on:
 
 jobs:
   release:
-    runs-on: windows-latest  # Using Windows since we need it for the exe
+    runs-on: windows-latest
     permissions:
       contents: write
       id-token: write
@@ -29,19 +29,21 @@ jobs:
           pip install -r requirements.txt
       
       - name: Build Python package
-        run: python -m build
+        run: |
+          mkdir package-dist
+          python -m build --outdir package-dist
       
       - name: Build Standalone Executable
         run: |
-          pyinstaller --noconsole --onefile --icon=docs/images/test.jpg --name Authipy src/authipy/main.py
+          mkdir exe-dist
+          pyinstaller --noconsole --onefile --icon=docs/images/test.jpg --name Authipy --distpath exe-dist src/authipy/main.py
       
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            dist/*.whl
-            dist/*.tar.gz
-            dist/*.exe
+            package-dist/*
+            exe-dist/*
           generate_release_notes: true
           draft: false
         env:
@@ -51,4 +53,4 @@ jobs:
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-        run: twine upload dist/*.whl dist/*.tar.gz
+        run: twine upload package-dist/*
