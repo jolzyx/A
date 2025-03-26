@@ -1,43 +1,42 @@
 # Authipy
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+<div align="center">
 
-A secure and user-friendly 2FA (Two-Factor Authentication) code generator built with Python and PyQt5. Authipy helps you manage your two-factor authentication codes in a simple desktop application.
+[![PyPI Version](https://img.shields.io/pypi/v/Authipy.svg)](https://pypi.org/project/Authipy)
+[![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://python.org)
+[![License](https://img.shields.io/github/license/TanmoyTheBoT/authipy.svg)](LICENSE)
+[![Downloads](https://img.shields.io/github/downloads/TanmoyTheBoT/authipy/total.svg)](https://github.com/TanmoyTheBoT/authipy/releases)
 
-![Authipy Screenshot](docs/images/screenshot.png) 
+A secure, offline Two-Factor Authentication (2FA) desktop application.
 
-## 🚀 Features
+[Features](#features) • [Installation](#installation) • [Usage](#usage) • [Contributing](#contributing)
 
-- **TOTP Code Generation**: Generate time-based one-time passwords (TOTP) compatible with most 2FA services
-- **QR Code Support**: Import accounts by scanning QR codes or display QR codes for easy transfer
-- **Account Management**: 
-  - Add, edit, and delete 2FA accounts
-  - Recycle bin for deleted accounts
-  - Support for custom issuer names
-- **User-Friendly Interface**:
-  - Clean and intuitive PyQt5-based GUI
-  - Copy codes with a single click
-  - Automatic code refresh
-- **Security**:
-  - Local storage only - your secrets never leave your device
-  - Encrypted storage of authentication secrets
-  - No internet connection required
+<img src="https://raw.githubusercontent.com/TanmoyTheBoT/Authipy/master/docs/images/screenshot.png" alt="Authipy Screenshot" width="400">
 
-## 📋 Requirements
+</div>
 
-- Python 3.8 or higher
-- PyQt5
-- Other dependencies are handled automatically during installation
+## Features
 
-## 🔧 Installation
+- 🔒 Secure TOTP code generation
+- 💾 Local-only storage
+- 📱 QR code import/export
+- 🗑️ Recycle bin feature
+- 📋 One-click copying
+- ⚡ Modern Qt interface
 
-### From PyPI (Recommended)
+## Installation
 
+### Method 1: Windows Executable (Recommended)
+1. Download the latest `Authipy.exe` from [Releases](https://github.com/TanmoyTheBoT/authipy/releases)
+2. Run directly - No installation required
+
+### Method 2: PyPI Package
 ```bash
 pip install authipy
+authipy  # to run
 ```
 
-### From Source
+### Method 3: Build from Source
 
 1. Clone the repository:
 ```bash
@@ -45,101 +44,86 @@ git clone https://github.com/TanmoyTheBoT/authipy.git
 cd authipy
 ```
 
-2. Install dependencies:
+2. Create and activate virtual environment (recommended):
+```bash
+python -m venv venv
+venv\\Scripts\\activate   # Windows
+```
+
+3. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Install in development mode:
+4. Install in development mode:
 ```bash
 pip install -e .
 ```
 
-## 🎮 Usage
-
-### Launch the Application
-
+5. Run the application:
 ```bash
 authipy
 ```
 
-Or if installed from source:
+6. Build executable (optional):
 ```bash
-python -m authipy.main
+# Install PyInstaller
+pip install pyinstaller Pillow sip
+
+# Build single-file executable
+pyinstaller --clean --noconsole --onefile --icon=docs/images/test.jpg --name Authipy src/authipy/main.py
 ```
 
-### Adding a New Account
+The executable will be created in the `dist` directory.
 
-1. Click the "Add Account" button
-2. Enter the required information:
-   - Website/Service name
-   - Secret key (provided by the service)
+## Usage
+
+### Add New Account
+1. Click "Add Account"
+2. Enter:
+   - Service name (required)
+   - Secret key (required)
    - Issuer name (optional)
-3. Click "Add" to save the account
 
-### Generating Codes
+### Generate Codes
+- Select account from list
+- Code displays automatically
+- Click code to copy
 
-1. Select an account from the list
-2. The current TOTP code will be displayed automatically
-3. Click the code to copy it to clipboard
-4. A timer shows when the code will refresh
+### Manage Accounts
+- Right-click for options
+- Use recycle bin
+- Import/Export accounts
 
-### Managing Accounts
+### Data Location
+- Windows: `%USERPROFILE%\.config\authipy`
+- Offline storage only
 
-- **Delete**: Right-click an account and select "Delete" or use the delete button
-- **Restore**: Access the recycle bin from the menu to restore deleted accounts
-- **QR Code**: Select an account and click "Show QR Code" to display/hide the QR code
+## Contributing
 
-## 🧪 Development
-
-### Setting Up Development Environment
-
-1. Install development dependencies:
+1. Fork the repository
+2. Install dev dependencies:
 ```bash
 pip install -r requirements-dev.txt
 ```
-
-### Running Tests
-
+3. Make changes
+4. Run tests:
 ```bash
 pytest
+pytest --cov=src --cov-report=html  # coverage report
 ```
+5. Submit Pull Request
 
-For test coverage report:
-```bash
-pytest --cov=src --cov-report=html
-```
+## Support
 
-## 🤝 Contributing
+- [Report Issues](https://github.com/TanmoyTheBoT/authipy/issues)
+- [GitHub Repository](https://github.com/TanmoyTheBoT/authipy)
 
-Contributions are welcome! Here's how you can help:
+## License
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Make your changes
-4. Run the tests to ensure everything works
-5. Commit your changes (`git commit -m 'Add some amazing feature'`)
-6. Push to the branch (`git push origin feature/amazing-feature`)
-7. Open a Pull Request
+[MIT License](LICENSE)
 
-Please make sure to update tests as appropriate and follow the existing code style.
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- [PyOTP](https://github.com/pyotp/pyotp) for TOTP implementation
-- [PyQt5](https://www.riverbankcomputing.com/software/pyqt/) for the GUI framework
-- [PyQRCode](https://github.com/mnooner256/pyqrcode) for QR code generation
-
-## 📬 Contact
-
-Tanmoy - [@TanmoyTheBoT](https://github.com/TanmoyTheBoT)
-
-Project Link: [https://github.com/TanmoyTheBoT/authipy](https://github.com/TanmoyTheBoT/authipy)
-
-## 📊 Project Status
-
-This project is actively maintained and welcomes contributions. Check the [issues page](https://github.com/TanmoyTheBoT/authipy/issues) for feature requests and bug reports.
+---
+<div align="center">
+<sub>Built with ❤️ by <a href="https://github.com/TanmoyTheBoT">TanmoyTheBoT</a></sub>
+</div>
