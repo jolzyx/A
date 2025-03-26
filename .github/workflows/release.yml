@@ -38,6 +38,8 @@ jobs:
         with:
           name: package-dist
           path: package-dist/*
+          if-no-files-found: error  # Fail if no files are found
+          retention-days: 1  # Only keep for 1 day since this is just for the release
 
       - name: Publish to TestPyPI
         uses: pypa/gh-action-pypi-publish@release/v1
@@ -81,6 +83,8 @@ jobs:
         with:
           name: exe-dist
           path: exe-dist/*
+          if-no-files-found: error  # Fail if no files are found
+          retention-days: 1  # Only keep for 1 day since this is just for the release
 
   release:
     name: Create GitHub Release
@@ -103,6 +107,8 @@ jobs:
         with:
           name: exe-dist
           path: exe-dist
+          # Adding error handling if artifacts are not found
+          if-no-artifact-found: error
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
