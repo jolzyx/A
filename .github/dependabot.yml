@@ -1,6 +1,5 @@
 version: 2
 updates:
-  # Python dependencies
   - package-ecosystem: "pip"
     directory: "/"
     schedule:
@@ -11,7 +10,6 @@ updates:
       - "python"
     versioning-strategy: auto
 
-  # GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
