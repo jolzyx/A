@@ -2,6 +2,7 @@
 
 <div align="center">
 
+[![Test PyPI](https://img.shields.io/badge/dynamic/json?label=test.pypi&query=%24.info.version&url=https%3A%2F%2Ftest.pypi.org%2Fpypi%2FAuthipy%2Fjson&prefix=v)](https://test.pypi.org/project/Authipy/)
 [![PyPI Version](https://img.shields.io/pypi/v/Authipy.svg)](https://pypi.org/project/Authipy)
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://python.org)
 [![License](https://img.shields.io/github/license/TanmoyTheBoT/authipy.svg)](LICENSE)
