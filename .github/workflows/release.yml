@@ -32,19 +32,26 @@ jobs:
         run: |
           python -m build
 
+      - name: Check package
+        run: |
+          python -m twine check dist/*
+
       - name: Upload package artifact
-        uses: actions/upload-artifact@v4  # Updated to v4
+        uses: actions/upload-artifact@v4
         with:
-          name: package-dist
+          name: dist
           path: dist/*
-          if-no-files-found: error  # Fail if no files are found
-          retention-days: 1  # Only keep for 1 day since this is just for the release
+          if-no-files-found: error
+          retention-days: 1
 
       - name: Publish to TestPyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           repository-url: https://test.pypi.org/legacy/
           packages-dir: dist
+          verbose: true
+          verify-metadata: true
+          skip-existing: true
 
   exe_build:
     name: Build Standalone Executable on Windows
@@ -74,12 +81,12 @@ jobs:
           pyinstaller --noconsole --onefile --icon=docs/images/test.jpg --name Authipy --distpath exe-dist src/authipy/main.py
 
       - name: Upload executable artifact
-        uses: actions/upload-artifact@v4  # Updated to v4
+        uses: actions/upload-artifact@v4
         with:
           name: exe-dist
           path: exe-dist/*
-          if-no-files-found: error  # Fail if no files are found
-          retention-days: 1  # Only keep for 1 day since this is just for the release
+          if-no-files-found: error
+          retention-days: 1
 
   release:
     name: Create GitHub Release
@@ -92,17 +99,16 @@ jobs:
           fetch-depth: 0
 
       - name: Download package artifact
-        uses: actions/download-artifact@v4  # Updated to v4
+        uses: actions/download-artifact@v4
         with:
           name: dist
           path: dist
 
       - name: Download executable artifact
-        uses: actions/download-artifact@v4  # Updated to v4
+        uses: actions/download-artifact@v4
         with:
           name: exe-dist
           path: exe-dist
-          # Adding error handling if artifacts are not found
           if-no-artifact-found: error
 
       - name: Create GitHub Release
