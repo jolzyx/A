@@ -10,7 +10,7 @@ jobs:
     name: Build and Publish Python Package on Ubuntu
     runs-on: ubuntu-latest
     permissions:
-      id-token: write   # Required for OIDC authentication with PyPI
+      id-token: write
       contents: read
     steps:
       - name: Checkout repository
@@ -114,7 +114,6 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ github.ref }}
           files: |
             dist/*
             exe-dist/*
