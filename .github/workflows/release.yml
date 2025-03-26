@@ -30,14 +30,13 @@ jobs:
 
       - name: Build Python package
         run: |
-          mkdir package-dist
-          python -m build --outdir package-dist
+          python -m build
 
       - name: Upload package artifact
         uses: actions/upload-artifact@v4  # Updated to v4
         with:
           name: package-dist
-          path: package-dist/*
+          path: dist/*
           if-no-files-found: error  # Fail if no files are found
           retention-days: 1  # Only keep for 1 day since this is just for the release
 
@@ -45,6 +44,7 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           repository-url: https://test.pypi.org/legacy/
+          packages-dir: dist
 
   exe_build:
     name: Build Standalone Executable on Windows
@@ -94,8 +94,8 @@ jobs:
       - name: Download package artifact
         uses: actions/download-artifact@v4  # Updated to v4
         with:
-          name: package-dist
-          path: package-dist
+          name: dist
+          path: dist
 
       - name: Download executable artifact
         uses: actions/download-artifact@v4  # Updated to v4
@@ -110,7 +110,7 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           files: |
-            package-dist/*
+            dist/*
             exe-dist/*
           generate_release_notes: true
           draft: false
