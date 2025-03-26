@@ -43,7 +43,7 @@ jobs:
         with:
           files: |
             package-dist/*
-            exe-dist/*
+            exe-dist/exe*
           generate_release_notes: true
           draft: false
         env:
