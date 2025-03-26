@@ -4,7 +4,7 @@
 
 A secure and user-friendly 2FA (Two-Factor Authentication) code generator built with Python and PyQt5. Authipy helps you manage your two-factor authentication codes in a simple desktop application.
 
-![Authipy Screenshot](docs/images/screenshot.png)
+![Authipy Screenshot](docs/images/screenshot.png) 
 
 ## 🚀 Features
 
