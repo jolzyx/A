@@ -34,7 +34,7 @@ jobs:
           python -m build --outdir package-dist
 
       - name: Upload package artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # Updated to v4
         with:
           name: package-dist
           path: package-dist/*
@@ -45,11 +45,6 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           repository-url: https://test.pypi.org/legacy/
-        env:
-          # If you're using OIDC (recommended), you do not need to specify a token.
-          # Otherwise, you can use TWINE_USERNAME and TWINE_PASSWORD from your secrets.
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
 
   exe_build:
     name: Build Standalone Executable on Windows
@@ -79,7 +74,7 @@ jobs:
           pyinstaller --noconsole --onefile --icon=docs/images/test.jpg --name Authipy --distpath exe-dist src/authipy/main.py
 
       - name: Upload executable artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # Updated to v4
         with:
           name: exe-dist
           path: exe-dist/*
@@ -97,13 +92,13 @@ jobs:
           fetch-depth: 0
 
       - name: Download package artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4  # Updated to v4
         with:
           name: package-dist
           path: package-dist
 
       - name: Download executable artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4  # Updated to v4
         with:
           name: exe-dist
           path: exe-dist
